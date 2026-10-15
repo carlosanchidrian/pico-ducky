@@ -31,9 +31,12 @@ Branch `fix/duckyscript3-await-and-if-continuation` carries two fixes for DuckyS
 
 - The `upstream` remote is configured: sync with
   `git fetch upstream && git merge upstream/main`.
-- Verification used for the fixes: `py_compile`, an AST audit (no async call left
-  un-awaited) and a host-side simulator with CircuitPython stubs that runs
-  `runScript()` against a sample payload. Hardware for end-to-end tests: 16 MB
-  RP2040 "Pico v3" clone, CircuitPython 10.0.3, host Ubuntu GNOME (es+winkeys layout).
+- Verification used for the fixes: `py_compile`, an AST audit (no async call
+  left un-awaited) and a host-side simulator with CircuitPython stubs that runs
+  `runScript()` against a sample payload. **End-to-end validation passed on real
+  hardware on 2026-10-15** (RP2040 "Pico v3" clone, 16 MB flash, CircuitPython
+  10.0.3; host: Ubuntu GNOME, es+winkeys layout): the test payload exercised
+  `VAR`, `FUNCTION`, `WHILE`, `IF`, `REPEAT` and the post-`IF` continuation, and
+  saved its output file.
 - License is GPL-2.0: keep `LICENSE` and copyright headers intact, and keep the
   change-notice comment lines at the top of modified files (GPLv2 §2a).
